@@ -12,6 +12,9 @@
 #include "memory.hpp"
 #include "event.hpp"
 #include "colors.hpp"
+#include "character.hpp"
 
 int main() {
+	Type t = FIRE;
+	std::cout << t << std::endl;
 }
