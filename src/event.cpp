@@ -1,11 +1,10 @@
 #include "event.hpp"
 
 namespace devsim {
-	Event::Event(Delta delta, TotalTime time, MooreMachine* target) {
-		this->delta = delta;
-		this->time = time;
-		this->target = target;
-	}
+	Event::Event(Delta delta, TotalTime time, MooreMachine* target) :
+		delta(delta),
+		time(time),
+		target(target) {}
 
 	bool Event::compare(Event const& a, Event const& b) {
 		return a.time == b.time ? *a.target == *b.target ? a.delta > b.delta : *a.target > *b.target : a.time > b.time;

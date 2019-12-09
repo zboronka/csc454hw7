@@ -16,7 +16,6 @@ namespace devsim {
 			Delta delta;
 			Event(Delta, TotalTime, MooreMachine*);
 			Event() : time(TotalTime()), target(nullptr), delta(EXT) {}
-
 			static bool compare(Event const&, Event const&);
 			friend bool operator==(Event const&, Event const&);
 			friend std::ostream& operator<<(std::ostream&, Event const&);

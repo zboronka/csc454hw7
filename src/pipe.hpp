@@ -45,8 +45,8 @@ namespace devsim {
 				p(new PipeModel<T>(in, out)),
 				input_machine(imach),
 				output_machine(omach) { in->link(); out->link(); }
-			~Pipe() { delete p; }
 			Pipe(const Pipe& other);
+			~Pipe() { delete p; }
 			Pipe& operator=(const Pipe& other);
 
 			bool pipe() { return p->pipe(); }

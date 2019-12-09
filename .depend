@@ -1,12 +1,17 @@
 totaltime.o: src/totaltime.cpp src/totaltime.hpp
-event.o: src/event.cpp src/event.hpp src/totaltime.hpp \
- src/mooremachine.hpp src/colors.hpp
+machine.o: src/machine.cpp src/machine.hpp src/mooremachine.hpp \
+ src/event.hpp src/totaltime.hpp src/colors.hpp src/port.hpp
 mooremachine.o: src/mooremachine.cpp src/mooremachine.hpp src/event.hpp \
  src/totaltime.hpp src/colors.hpp
 battle.o: src/battle.cpp src/port.hpp src/pipe.hpp src/mooremachine.hpp \
- src/event.hpp src/totaltime.hpp src/colors.hpp src/memory.hpp \
+ src/event.hpp src/totaltime.hpp src/colors.hpp src/player.hpp \
  src/character.hpp
+player.o: src/player.cpp src/player.hpp src/character.hpp \
+ src/mooremachine.hpp src/event.hpp src/totaltime.hpp src/colors.hpp \
+ src/port.hpp
+event.o: src/event.cpp src/event.hpp src/totaltime.hpp \
+ src/mooremachine.hpp src/colors.hpp
+character.o: src/character.cpp src/character.hpp src/mooremachine.hpp \
+ src/event.hpp src/totaltime.hpp src/colors.hpp src/port.hpp
 pipe.o: src/pipe.cpp src/pipe.hpp src/port.hpp src/mooremachine.hpp \
  src/event.hpp src/totaltime.hpp src/colors.hpp
-memory.o: src/memory.cpp src/memory.hpp src/mooremachine.hpp \
- src/event.hpp src/totaltime.hpp src/colors.hpp src/port.hpp
