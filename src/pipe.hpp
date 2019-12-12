@@ -39,12 +39,16 @@ namespace devsim {
 		public:
 			MooreMachine* input_machine;
 			MooreMachine* output_machine;
+			void* input_port;
+			void* output_port;
 
 			template <typename T>
 			Pipe(Port<T>* in, Port<T>* out, MooreMachine* imach, MooreMachine* omach) :
 				p(new PipeModel<T>(in, out)),
 				input_machine(imach),
-				output_machine(omach) { in->link(); out->link(); }
+				output_machine(omach),
+				input_port(in),
+				output_port(out) { in->link(); out->link(); }
 			Pipe(const Pipe& other);
 			~Pipe() { delete p; }
 			Pipe& operator=(const Pipe& other);

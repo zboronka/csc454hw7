@@ -14,6 +14,10 @@ namespace devsim {
 		return a.target == b.target && a.time == b.time && a.delta == b.delta;
 	}
 
+	bool operator<(Event const& a, Event const& b) {
+		return a.time == b.time ? *a.target == *b.target ? a.delta < b.delta : *a.target < *b.target : a.time < b.time;
+	}
+
 	std::ostream& operator<<(std::ostream& strm, Event const& a) {
 		switch(a.delta) {
 			case EXT:
@@ -29,7 +33,6 @@ namespace devsim {
 		}
 		strm << colors::RESET;
 		strm << std::endl << "Current time: " << a.time;
-		strm << std::endl << "TARGET " << *a.target;
 		return strm;
 	}
 }

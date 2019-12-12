@@ -1,18 +1,32 @@
 #include "player.hpp"
+#include <iostream>
 
 Player::Player(const Player& other) :
 	Character(other),
-	speed(other.speed),
-	elapse(other.elapse),
-	input(new devsim::Port<std::string>(*other.input)) {}
+	input(new devsim::Port<int>(*other.input)) {}
 
 Player& Player::operator=(const Player& other) {
 	if(this != &other) {
 		Character::operator=(other);
-		speed = other.speed;
-		elapse = other.elapse;
 		*input = *other.input;
 	}
 
 	return *this;
+}
+
+void Player::lambda() {
+	Character::lambda();
+}
+
+void Player::delta_int(devsim::TotalTime now) {
+	Character::delta_int(now);
+	target = -1;
+}
+
+void Player::delta_ext(devsim::TotalTime now) {
+	Character::delta_ext(now);
+	if(input->available()) {
+		target = input->get();
+		external = true;
+	}
 }

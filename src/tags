@@ -12,7 +12,7 @@ COLORS_HPP	colors.hpp	/^#define COLORS_HPP$/;"	d
 CON	event.hpp	/^	enum Delta { EXT, INT, CON };$/;"	e	enum:devsim::Delta
 CONCOLOR	colors.hpp	/^	const std::string CONCOLOR = YELLOW;$/;"	v	namespace:colors	typeref:typename:const std::string
 CYAN	colors.hpp	/^	const std::string CYAN     = "\\u001b[36m";$/;"	v	namespace:colors	typeref:typename:const std::string
-Character	character.cpp	/^Character::Character(const Character& other) {$/;"	f	class:Character
+Character	character.cpp	/^Character::Character(const Character& other) :$/;"	f	class:Character
 Character	character.hpp	/^		Character() :$/;"	f	class:Character
 Character	character.hpp	/^class Character : public devsim::MooreMachine {$/;"	c
 Delta	event.hpp	/^	enum Delta { EXT, INT, CON };$/;"	g	namespace:devsim
@@ -48,7 +48,7 @@ PipeConcept	pipe.hpp	/^			class PipeConcept {$/;"	c	class:devsim::Pipe
 PipeModel	pipe.hpp	/^					PipeModel() : $/;"	f	class:devsim::Pipe::PipeModel
 PipeModel	pipe.hpp	/^					PipeModel(Port<T>* in, Port<T>* out) : $/;"	f	class:devsim::Pipe::PipeModel
 PipeModel	pipe.hpp	/^			class PipeModel : public PipeConcept {$/;"	c	class:devsim::Pipe
-Player	player.cpp	/^Player::Player(const Player& other):$/;"	f	class:Player
+Player	player.cpp	/^Player::Player(const Player& other) :$/;"	f	class:Player
 Player	player.hpp	/^		Player(long long speed, int priority):$/;"	f	class:Player
 Player	player.hpp	/^class Player : public Character {$/;"	c
 Port	port.hpp	/^	class Port {$/;"	c	namespace:devsim
@@ -85,13 +85,12 @@ devsim	port.hpp	/^namespace devsim {$/;"	n
 devsim	totaltime.cpp	/^namespace devsim {$/;"	n	file:
 devsim	totaltime.hpp	/^namespace devsim {$/;"	n
 discrete_time	totaltime.hpp	/^			int discrete_time;$/;"	m	class:devsim::TotalTime	typeref:typename:int
-elapse	player.hpp	/^		long long elapse;$/;"	m	class:Player	typeref:typename:long long
 get	port.hpp	/^			T get() { if(accesses < links) { accesses++; return payload; } throw "PortNotOpenException"; /;"	f	class:devsim::Port	typeref:typename:T
 get_discrete	totaltime.hpp	/^			int get_discrete() { return discrete_time; }$/;"	f	class:devsim::TotalTime	typeref:typename:int
 get_internal	mooremachine.hpp	/^			Event* get_internal() { return internal; }$/;"	f	class:devsim::MooreMachine	typeref:typename:Event *
 get_priority	mooremachine.hpp	/^			int get_priority() { return priority; }$/;"	f	class:devsim::MooreMachine	typeref:typename:int
 get_real	totaltime.hpp	/^			long long get_real() { return real_time; }$/;"	f	class:devsim::TotalTime	typeref:typename:long long
-in_actions	character.hpp	/^		std::vector<devsim::Port<Action>>* in_actions;$/;"	m	class:Character	typeref:typename:std::vector<devsim::Port<Action>> *
+in_actions	character.hpp	/^		std::vector<devsim::Port<Action>*>* in_actions;$/;"	m	class:Character	typeref:typename:std::vector<devsim::Port<Action> * > *
 input	machine.hpp	/^		devsim::Port<int>* input;$/;"	m	class:Machine	typeref:typename:devsim::Port<int> *
 input	player.hpp	/^		devsim::Port<std::string>* input;$/;"	m	class:Player	typeref:typename:devsim::Port<std::string> *
 input_machine	pipe.hpp	/^			MooreMachine* input_machine;$/;"	m	class:devsim::Pipe	typeref:typename:MooreMachine *
@@ -105,6 +104,7 @@ length	totaltime.cpp	/^	long long TotalTime::length(TotalTime b) {$/;"	f	class:d
 link	port.hpp	/^			void link() { links++; accesses++; }$/;"	f	class:devsim::Port	typeref:typename:void
 links	port.hpp	/^			int links;$/;"	m	class:devsim::Port	typeref:typename:int
 main	battle.cpp	/^int main() {$/;"	f	typeref:typename:int
+next	player.hpp	/^		long long next;$/;"	m	class:Player	typeref:typename:long long
 operator !=	totaltime.cpp	/^	bool operator!=(TotalTime const& a, TotalTime const& b) {$/;"	f	namespace:devsim	typeref:typename:bool
 operator <	mooremachine.cpp	/^	bool operator<(MooreMachine const& a, MooreMachine const& b) {$/;"	f	namespace:devsim	typeref:typename:bool
 operator <	totaltime.cpp	/^	bool operator<(TotalTime const& a, TotalTime const& b) {$/;"	f	namespace:devsim	typeref:typename:bool
@@ -123,7 +123,7 @@ operator ==	totaltime.cpp	/^	bool operator==(TotalTime const& a, TotalTime const
 operator >	mooremachine.cpp	/^	bool operator>(MooreMachine const& a, MooreMachine const& b) {$/;"	f	namespace:devsim	typeref:typename:bool
 operator >	totaltime.cpp	/^	bool operator>(TotalTime const& a, TotalTime const& b) {$/;"	f	namespace:devsim	typeref:typename:bool
 operator >=	totaltime.cpp	/^	bool operator>=(TotalTime const& a, TotalTime const& b) {$/;"	f	namespace:devsim	typeref:typename:bool
-out_actions	character.hpp	/^		std::vector<devsim::Port<Action>>* out_actions;$/;"	m	class:Character	typeref:typename:std::vector<devsim::Port<Action>> *
+out_actions	character.hpp	/^		std::vector<devsim::Port<Action>*>* out_actions;$/;"	m	class:Character	typeref:typename:std::vector<devsim::Port<Action> * > *
 output	machine.hpp	/^		devsim::Port<int>* output;$/;"	m	class:Machine	typeref:typename:devsim::Port<int> *
 output_machine	pipe.hpp	/^			MooreMachine* output_machine;$/;"	m	class:devsim::Pipe	typeref:typename:MooreMachine *
 output_port	pipe.hpp	/^					Port<T>* output_port;$/;"	m	class:devsim::Pipe::PipeModel	typeref:typename:Port<T> *
@@ -141,7 +141,7 @@ set_priority	mooremachine.hpp	/^			void set_priority(int priority) { this->prior
 speed	player.hpp	/^		long long speed;$/;"	m	class:Player	typeref:typename:long long
 t	machine.hpp	/^		long long t = 0;$/;"	m	class:Machine	typeref:typename:long long
 ta	machine.hpp	/^		long long ta() { return p > 0 ? s : -1; }$/;"	f	class:Machine	typeref:typename:long long
-ta	player.hpp	/^		long long ta() { return speed - elapse; }$/;"	f	class:Player	typeref:typename:long long
+ta	player.hpp	/^		long long ta() { return next; }$/;"	f	class:Player	typeref:typename:long long
 target	event.hpp	/^			MooreMachine* target;$/;"	m	class:devsim::Event	typeref:typename:MooreMachine *
 time	event.hpp	/^			TotalTime time;$/;"	m	class:devsim::Event	typeref:typename:TotalTime
 type	character.hpp	/^	Type type;$/;"	m	struct:Action	typeref:typename:Type

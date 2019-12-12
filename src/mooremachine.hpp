@@ -12,6 +12,7 @@ namespace devsim {
 
 		protected:
 			TotalTime lastdelta;
+			MooreMachine(int);
 
 		public:
 			virtual long long ta() = 0;

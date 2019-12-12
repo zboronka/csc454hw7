@@ -1,6 +1,11 @@
 #include "mooremachine.hpp"
 
 namespace devsim {
+	MooreMachine::MooreMachine(int priority) :
+		lastdelta(TotalTime()),
+		priority(priority),
+		internal(new Event()) {}
+
 	MooreMachine::MooreMachine() :
 		lastdelta(TotalTime()),
 		internal(new Event()) {}

@@ -34,7 +34,7 @@ namespace devsim {
 	}
 
 	TotalTime TotalTime::advance(long long b) {
-		return TotalTime(real_time + b, 0);
+		return b > 0 ? TotalTime(real_time + b, 0) : TotalTime(real_time, discrete_time+1);
 	}
 
 	long long TotalTime::length(TotalTime b) {
