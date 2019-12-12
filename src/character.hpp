@@ -2,6 +2,7 @@
 #define CHARACTER_HPP
 
 #include <algorithm>
+#include <vector>
 
 #include "mooremachine.hpp"
 #include "port.hpp"
@@ -44,7 +45,7 @@ class Character : public devsim::MooreMachine {
 		std::vector<devsim::Port<Action>*>* in_actions;
 		std::vector<devsim::Port<Action>*>* out_actions;
 		devsim::Port<int>* health_port;
-		~Character() { delete in_actions; delete out_actions; delete health_port; }
+		~Character();
 		Character& operator=(const Character&);
 
 		long long ta() { return hitpoints > 0 ? external ? 0 : next : -1; }

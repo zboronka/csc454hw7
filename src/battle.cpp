@@ -63,6 +63,8 @@ int main() {
 
 	auto trajectory = new std::map<devsim::Event, int>();
 
+	auto playerhp = 300;
+
 	std::regex input("\\((\\d*\\.\\d*|\\d*),(\\d*)\\)");
 	std::smatch matches;
 
@@ -79,7 +81,7 @@ int main() {
 		}
 	}
 
-	while(!pqueue->empty() && pqueue->front().time.get_real() < devsim::SECOND*10) {
+	while(!pqueue->empty() && pqueue->front().time.get_real() < devsim::SECOND*10 && playerhp > 0) {
 		auto e = pqueue->front();
 		pqueue->erase(pqueue->begin());
 		make_heap(pqueue->begin(), pqueue->end(), devsim::Event::compare);
@@ -97,7 +99,7 @@ int main() {
 			continue;
 		}
 
-		std::cout << e << std::endl << names->at(e.target) << std::endl << std::endl;
+		//std::cout << e << std::endl << names->at(e.target) << std::endl << std::endl;
 
 		switch(e.delta) {
 			case devsim::EXT:
@@ -138,16 +140,41 @@ int main() {
 		for(auto i : *actions) {
 			i->pipe();
 			if(((devsim::Port<Action>*)i->output_port)->available()) {
-				std::cout << names->at(i->input_machine) << " attacks with " << ((devsim::Port<Action>*)i->output_port)->get() << std::endl;
+				std::cout << "[" << e.time << "] " << names->at(i->input_machine) << " attacks with " << ((devsim::Port<Action>*)i->output_port)->get() << std::endl;
 			}
 		}
 
 		for(auto i : *healths) {
 			i->pipe();
 			if(((devsim::Port<int>*)i->output_port)->available()) {
+				if(i->input_machine == a) {
+					playerhp = ((devsim::Port<int>*)i->output_port)->peek();
+				}
 				std::cout << names->at(i->input_machine) << " health is " << ((devsim::Port<int>*)i->output_port)->get() << std::endl;
 			}
 		}
 	}
+	delete a;
+	delete b;
+	delete c;
+	delete ainput;
+	delete in;
+	delete names;
+	for(auto i : *pipes) {
+		delete i;
+	}
+	delete pipes;
+	for(auto i : *healths) {
+		delete (devsim::Port<int>*)i->output_port;
+		delete i;
+	}
+	delete healths;
+	for(auto i : *actions) {
+		delete (devsim::Port<int>*)i->output_port;
+		delete i;
+	}
+	delete actions;
+	delete trajectory;
+	delete pqueue;
 }
 

@@ -11,6 +11,17 @@ Character::Character(const Character& other) :
 		std::copy(other.in_actions->begin(), other.in_actions->end(), in_actions->begin());
 		std::copy(other.out_actions->begin(), other.out_actions->end(), out_actions->begin());
 	}
+Character::~Character() {
+	for(auto i : *in_actions) {
+		delete i;
+	}
+	delete in_actions; 
+	for(auto i : *out_actions) {
+		delete i;
+	}
+	delete out_actions; 
+	delete health_port;
+}
 
 void Character::lambda() {
 	if(external) {
