@@ -19,8 +19,10 @@ void Player::lambda() {
 }
 
 void Player::delta_int(devsim::TotalTime now) {
+	if(!external) {
+		target = -1;
+	}
 	Character::delta_int(now);
-	target = -1;
 }
 
 void Player::delta_ext(devsim::TotalTime now) {

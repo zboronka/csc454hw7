@@ -15,7 +15,7 @@
 #include "化け物.hpp"
 
 int main() {
-	auto a = new Player(300, devsim::SECOND*1, 0);
+	auto a = new Player(850, devsim::SECOND, 0);
 	a->in_actions->push_back(new devsim::Port<Action>());
 	a->in_actions->push_back(new devsim::Port<Action>());
 	a->out_actions->push_back(new devsim::Port<Action>());
@@ -63,7 +63,7 @@ int main() {
 
 	auto trajectory = new std::map<devsim::Event, int>();
 
-	auto playerhp = 300;
+	auto playerhp = 850;
 
 	std::regex input("\\((\\d*\\.\\d*|\\d*),(\\d*)\\)");
 	std::smatch matches;
@@ -98,8 +98,6 @@ int main() {
 			make_heap(pqueue->begin(), pqueue->end(), devsim::Event::compare);
 			continue;
 		}
-
-		//std::cout << e << std::endl << names->at(e.target) << std::endl << std::endl;
 
 		switch(e.delta) {
 			case devsim::EXT:
@@ -150,7 +148,7 @@ int main() {
 				if(i->input_machine == a) {
 					playerhp = ((devsim::Port<int>*)i->output_port)->peek();
 				}
-				std::cout << names->at(i->input_machine) << " health is " << ((devsim::Port<int>*)i->output_port)->get() << std::endl;
+				std::cout << "[" << e.time << "] " << names->at(i->input_machine) << " health is " << ((devsim::Port<int>*)i->output_port)->get() << std::endl;
 			}
 		}
 	}

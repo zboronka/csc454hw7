@@ -34,13 +34,12 @@ void Character::lambda() {
 		}
 	}
 	
-	if(target >= 0 && target < out_actions->size()) {
+	else if(target >= 0 && target < out_actions->size()) {
 		out_actions->at(target)->set(Action {100, EARTH});
 	}
 }
 
 void Character::delta_int(devsim::TotalTime now) {
-	next = speed;
 	lastdelta = now;
 	external = false;
 	for(auto i : *in_actions) {
@@ -61,7 +60,6 @@ void Character::delta_ext(devsim::TotalTime now) {
 }
 
 void Character::delta_con(devsim::TotalTime now) {
-	next = speed;
 	lastdelta = now;
 	external = false;
 	for(auto i : *in_actions) {
